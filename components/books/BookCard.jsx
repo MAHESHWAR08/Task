@@ -9,14 +9,17 @@ import Button from "@/components/ui/Button";
 import Toast from "@/components/ui/Toast";
 
 export default function BookCard({ book }) {
-  const { addToCart, isInCart, getItemQuantity } = useCart();
+  const { addToCart, isInCart } = useCart();
   const [showToast, setShowToast] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  const inCart = isInCart(book.id);
-  const quantity = getItemQuantity(book.id);
+  // ✅ Check if book is already in cart
+  const alreadyInCart = isInCart(book.id);
 
   const handleAddToCart = () => {
+    // ✅ Prevent adding if already in cart
+    if (alreadyInCart) return;
+
     addToCart(book);
     setShowToast(true);
   };
@@ -61,25 +64,23 @@ export default function BookCard({ book }) {
             {book.category}
           </span>
 
-          {/* Cart Quantity Indicator */}
-          {inCart && (
+          {/* ✅ "Added" indicator on image */}
+          {alreadyInCart && (
             <span
               className={cn(
                 "absolute top-3 right-3",
-                "w-7 h-7 rounded-full",
+                "px-2 py-1 rounded-full",
                 "bg-green-500 text-white text-xs font-bold",
-                "flex items-center justify-center",
+                "flex items-center gap-1",
                 "shadow-md"
               )}
-              aria-label={`${quantity} in cart`}
             >
-              {quantity}
+              ✓ Added
             </span>
           )}
         </div>
 
         {/* Book Info */}
-        {/* ✅ Changed: flex-grow → grow */}
         <div className="p-4 flex flex-col grow">
           <h3 className="font-semibold text-gray-900 dark:text-white text-lg leading-tight mb-1 line-clamp-1">
             {book.title}
@@ -89,7 +90,6 @@ export default function BookCard({ book }) {
             by {book.author}
           </p>
 
-          {/* ✅ Changed: flex-grow → grow */}
           <p className="text-xs text-gray-400 dark:text-gray-500 line-clamp-2 mb-3 grow">
             {book.description}
           </p>
@@ -102,13 +102,17 @@ export default function BookCard({ book }) {
             </span>
           </div>
 
-          {/* Add to Cart */}
+          {/* ✅ Add to Cart Button — Disabled after one click */}
           <Button
             onClick={handleAddToCart}
-            variant={inCart ? "outline" : "primary"}
-            className="w-full"
+            disabled={alreadyInCart}
+            variant={alreadyInCart ? "secondary" : "primary"}
+            className={cn(
+              "w-full",
+              alreadyInCart && "cursor-not-allowed opacity-70"
+            )}
           >
-            {inCart ? `In Cart (${quantity})` : "🛒 Add to Cart"}
+            {alreadyInCart ? "✅ Added to Cart" : "🛒 Add to Cart"}
           </Button>
         </div>
       </article>
