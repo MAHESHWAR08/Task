@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "price": 12.99,
+    "rating": 4.5,
+    "category": "Fiction",
+    "image": "https://covers.openlibrary.org/b/id/7222246-L.jpg",
+    "description": "A story of the mysteriously wealthy Jay Gatsby and his love for Daisy Buchanan."
+  },
+  {
+    "id": 2,
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "price": 14.99,
+    "rating": 4.8,
+    "category": "Fiction",
+    "image": "https://covers.openlibrary.org/b/id/8228691-L.jpg",
+    "description": "A gripping novel about racial injustice in the American South."
+  },
+  {
+    "id": 3,
+    "title": "Dune",
+    "author": "Frank Herbert",
+    "price": 16.99,
+    "rating": 4.7,
+    "category": "Sci-Fi",
+    "image": "https://covers.openlibrary.org/b/id/11153085-L.jpg",
+    "description": "An epic science fiction masterpiece set on the desert planet Arrakis."
+  },
+  {
+    "id": 4,
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "price": 18.99,
+    "rating": 4.6,
+    "category": "Non-Fiction",
+    "image": "https://covers.openlibrary.org/b/id/8409327-L.jpg",
+    "description": "A brief history of humankind from the Stone Age to the Silicon Age."
+  },
+  {
+    "id": 5,
+    "title": "1984",
+    "author": "George Orwell",
+    "price": 11.99,
+    "rating": 4.7,
+    "category": "Dystopian",
+    "image": "https://covers.openlibrary.org/b/id/7222246-L.jpg",
+    "description": "A dystopian novel set in a totalitarian society under constant surveillance."
+  },
+  {
+    "id": 6,
+    "title": "The Hobbit",
+    "author": "J.R.R. Tolkien",
+    "price": 13.99,
+    "rating": 4.8,
+    "category": "Fantasy",
+    "image": "https://covers.openlibrary.org/b/id/6979861-L.jpg",
+    "description": "The classic fantasy adventure of Bilbo Baggins and his unexpected journey."
+  },
+  {
+    "id": 7,
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "price": 15.99,
+    "rating": 4.9,
+    "category": "Self-Help",
+    "image": "https://covers.openlibrary.org/b/id/10958382-L.jpg",
+    "description": "Proven strategies to build good habits and break bad ones."
+  },
+  {
+    "id": 8,
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "price": 14.49,
+    "rating": 4.4,
+    "category": "Sci-Fi",
+    "image": "https://covers.openlibrary.org/b/id/9251896-L.jpg",
+    "description": "A pioneering cyberpunk novel that defined a genre."
+  },
+  {
+    "id": 9,
+    "title": "Educated",
+    "author": "Tara Westover",
+    "price": 13.49,
+    "rating": 4.7,
+    "category": "Non-Fiction",
+    "image": "https://covers.openlibrary.org/b/id/8225261-L.jpg",
+    "description": "A powerful memoir about growing up in a survivalist family."
+  },
+  {
+    "id": 10,
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "price": 10.99,
+    "rating": 4.5,
+    "category": "Dystopian",
+    "image": "https://covers.openlibrary.org/b/id/6979861-L.jpg",
+    "description": "A dystopian vision of a genetically engineered future society."
+  },
+  {
+    "id": 11,
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "author": "J.K. Rowling",
+    "price": 12.49,
+    "rating": 4.9,
+    "category": "Fantasy",
+    "image": "https://covers.openlibrary.org/b/id/10110415-L.jpg",
+    "description": "The boy wizard begins his magical journey at Hogwarts."
+  },
+  {
+    "id": 12,
+    "title": "Thinking, Fast and Slow",
+    "author": "Daniel Kahneman",
+    "price": 17.99,
+    "rating": 4.6,
+    "category": "Non-Fiction",
+    "image": "https://covers.openlibrary.org/b/id/8225261-L.jpg",
+    "description": "A groundbreaking exploration of the two systems that drive how we think."
+  }
+]
