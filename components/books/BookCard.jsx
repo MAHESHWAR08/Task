@@ -9,19 +9,33 @@ import Button from "@/components/ui/Button";
 import Toast from "@/components/ui/Toast";
 
 export default function BookCard({ book }) {
-  const { addToCart, isInCart } = useCart();
+  const {
+    addToCart,
+    isInCart,
+    getItemQuantity,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCart();
+
   const [showToast, setShowToast] = useState(false);
   const [imgError, setImgError] = useState(false);
 
-  // ✅ Check if book is already in cart
-  const alreadyInCart = isInCart(book.id);
+  const inCart = isInCart(book.id);
+  const quantity = getItemQuantity(book.id);
 
   const handleAddToCart = () => {
-    // ✅ Prevent adding if already in cart
-    if (alreadyInCart) return;
-
     addToCart(book);
     setShowToast(true);
+  };
+
+  const handleIncrease = () => {
+    increaseQuantity(book.id);
+  };
+
+  const handleDecrease = () => {
+    decreaseQuantity(book.id);
+    // When quantity becomes 0, item is removed from cart
+    // isInCart becomes false → "Add to Cart" button reappears
   };
 
   return (
@@ -64,20 +78,7 @@ export default function BookCard({ book }) {
             {book.category}
           </span>
 
-          {/* ✅ "Added" indicator on image */}
-          {alreadyInCart && (
-            <span
-              className={cn(
-                "absolute top-3 right-3",
-                "px-2 py-1 rounded-full",
-                "bg-green-500 text-white text-xs font-bold",
-                "flex items-center gap-1",
-                "shadow-md"
-              )}
-            >
-              ✓ Added
-            </span>
-          )}
+         
         </div>
 
         {/* Book Info */}
@@ -102,22 +103,72 @@ export default function BookCard({ book }) {
             </span>
           </div>
 
-          {/* ✅ Add to Cart Button — Disabled after one click */}
-          <Button
-            onClick={handleAddToCart}
-            disabled={alreadyInCart}
-            variant={alreadyInCart ? "secondary" : "primary"}
-            className={cn(
-              "w-full",
-              alreadyInCart && "cursor-not-allowed opacity-70"
-            )}
-          >
-            {alreadyInCart ? "✅ Added to Cart" : "🛒 Add to Cart"}
-          </Button>
+          {/* ✅ Cart Button / Quantity Controls */}
+          {!inCart ? (
+            /* STATE 1: Show "Add to Cart" button */
+            <Button
+              onClick={handleAddToCart}
+              variant="primary"
+              className="w-full"
+            >
+              🛒 Add to Cart
+            </Button>
+          ) : (
+            /* STATE 2: Show Quantity Controls */
+            <div
+              className={cn(
+                "flex items-center justify-between",
+                "border-2 border-indigo-600 dark:border-indigo-400 rounded-lg",
+                "overflow-hidden"
+              )}
+            >
+              {/* Decrease Button */}
+              <button
+                onClick={handleDecrease}
+                className={cn(
+                  "w-12 h-10 flex items-center justify-center",
+                  "bg-indigo-600 dark:bg-indigo-500 text-white",
+                  "hover:bg-indigo-700 dark:hover:bg-indigo-600",
+                  "transition-colors cursor-pointer",
+                  "font-bold text-xl"
+                )}
+                aria-label={`Decrease quantity of ${book.title}`}
+              >
+                −
+              </button>
+
+              {/* Quantity Display */}
+              <span
+                className={cn(
+                  "flex-1 h-10 flex items-center justify-center",
+                  "text-base font-bold",
+                  "text-indigo-600 dark:text-indigo-400",
+                  "select-none"
+                )}
+              >
+                {quantity}
+              </span>
+
+              {/* Increase Button */}
+              <button
+                onClick={handleIncrease}
+                className={cn(
+                  "w-12 h-10 flex items-center justify-center",
+                  "bg-indigo-600 dark:bg-indigo-500 text-white",
+                  "hover:bg-indigo-700 dark:hover:bg-indigo-600",
+                  "transition-colors cursor-pointer",
+                  "font-bold text-xl"
+                )}
+                aria-label={`Increase quantity of ${book.title}`}
+              >
+                +
+              </button>
+            </div>
+          )}
         </div>
       </article>
 
-      {/* Toast */}
+      {/* Toast Notification */}
       <Toast
         message={`"${book.title}" added to cart!`}
         isVisible={showToast}
